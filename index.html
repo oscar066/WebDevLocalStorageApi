@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage</title>
+       <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #333;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    img {
+        max-width: 100px;
+        height: auto;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-bottom: 5px;
+    }
+    button:hover {
+            background-color: #0056b3;
+        }
+
+    h1 {
+            color: #333;
+        }
+</style>
+
+
+    <script type="text/javascript">
+        
+        const localStorage = window.localStorage;
+
+        const initialize = () => {
+            if (localStorage) {
+                const count = localStorage.getItem("visitCount") || 0;
+                const newCount = parseInt(count) + 1;
+                localStorage.setItem("visitCount", newCount);
+            }
+            updateDOM();
+        };
+
+        const updateDOM = () => {
+            const count = localStorage.getItem("visitCount") || 0;
+            const storedPreferences = localStorage.getItem("preference");
+            const preference = storedPreferences 
+                ? JSON.parse(storedPreferences) 
+                : {};
+
+            document.getElementById("visitCount").innerHTML = `Visit count ${count}`;
+            document.body.style.background = preference.color || "white";
+            showAllStoredKeyValues();
+        };
+
+        const setColorPreference = (color) => {
+            const preference = { color };
+            localStorage.setItem("preference", JSON.stringify(preference));
+            updateDOM();
+        };
+
+        const removeCount = () => {
+            localStorage.removeItem("visitCount");
+            updateDOM();
+        };
+
+        const clearAll = () => {
+            localStorage.clear();
+            updateDOM();
+        };
+
+        const showAllStoredKeyValues = () => {
+            console.log(`we have ${localStorage.length} values`);
+            const ul = document.getElementById("storedItems");
+            ul.innerHTML = "";
+
+            for (let index = 0; index < localStorage.length; index++) {
+                const key = localStorage.key(index);
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(`${key} = ${localStorage.getItem(key)}`));
+                ul.appendChild(li);
+            }
+        };
+    </script>
+</head>
+<body onload="initialize()">
+    <h1>My Personal Information</h1>
+    <table>
+        <tr>
+            <th>Photo</th>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Reg No</th>
+            
+        </tr>
+        <tr>
+            <td><img src="img1.jpeg" alt="Your Photo" width="100"></td>
+            <td>OSCAR</td>
+            <td>KARUGA</td>
+            <td>SCT222-0142/2021</td>
+    </table>
+
+    <ul id="storedItems"></ul>
+    <button type="button" onclick="setColorPreference('red')">Red</button>
+    <button type="button" onclick="setColorPreference('green')">Green</button>
+    <button type="button" onclick="setColorPreference('blue')">Blue</button>
+
+    <div id="visitCount"></div>
+    <button type="button" onclick="removeCount()">Remove count</button>
+    <button type="button" onclick="clearAll()">Clear all</button>
+</body>
+</html>
