@@ -2,49 +2,67 @@
 <html>
 <head>
     <title>Local Storage</title>
-       <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        <style>
+        body {
+            background-color: #f0f0f0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
 
-    th, td {
-        padding: 15px;
-        text-align: left;
-    }
+        h1 {
+            color: #333;
+        }
 
-    th {
-        background-color: #333;
-        color: #fff;
-    }
+        table {
+            margin: 20px auto;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+        }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
 
-    img {
-        max-width: 100px;
-        height: auto;
-    }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
 
-    ul {
-        list-style: none;
-        padding: 0;
-    }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-    ul li {
-        margin-bottom: 5px;
-    }
-    button:hover {
+        img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        button {   
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
             background-color: #0056b3;
         }
 
-    h1 {
-            color: #333;
-        }
-</style>
+    </style>
 
 
     <script type="text/javascript">
